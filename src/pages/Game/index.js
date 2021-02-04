@@ -53,7 +53,7 @@ function Entry(props) {
             setIsFinished(false);
             setRestart(false);
         }
-    }, [restart])
+    }, [getRandomizedWordEasy, restart, setDifficulty])
     return (
         <div className="Game">
             <div className="header">
