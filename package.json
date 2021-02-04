@@ -35,6 +35,12 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
+    "husky": "^4.3.8",
     "sass": "^1.32.5"
-  }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  } 
 }

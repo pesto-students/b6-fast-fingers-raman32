@@ -1,7 +1,10 @@
 .Restart{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: center;    
+}
+.Restart :hover {
+    cursor: pointer;
 }
 .reloadIcon{
     width: 20px;
