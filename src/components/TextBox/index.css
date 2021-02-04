@@ -1,0 +1,8 @@
+.textBox{
+    background-color: #8A9699;
+    color: black;
+    height: 30px;
+    border: 0px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,23 @@
+.Entry{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Entry div{
+    margin:5px
+}
+.logoTitle{
+    color: #A8242F;
+    font-size: xx-large;
+}
+.logoDescription{
+    color: #A8242F;
+    font-size: small;
+}
+.keyboardLogo{
+    width: 100px;
+    height: 100px;
+}

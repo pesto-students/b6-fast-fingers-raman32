@@ -1,0 +1,9 @@
+.Restart{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.reloadIcon{
+    width: 20px;
+    height: 20px;
+}

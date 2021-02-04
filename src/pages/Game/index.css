@@ -1,0 +1,44 @@
+.Game{ 
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.headerLeft {
+    text-align: left;
+}
+.headerRight{
+    text-align:right;
+}
+.headerLogo {
+    color: #A8242F;
+    font-size: large;
+}
+.timer{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.scoreBoard{
+    flex: 1;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px white solid;
+
+}
+.gameInner{
+    
+}
+.collapsableDiv{
+    flex: 1;
+    flex-shrink: 2;
+}
+.scoreAndGameContainer{
+    display: flex;
+    flex-direction: row;
+}
