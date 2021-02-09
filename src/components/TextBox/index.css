@@ -6,3 +6,6 @@
     border-radius: 5px;
     text-transform: uppercase;
 }
+.error {
+    border: red 2px solid;
+}

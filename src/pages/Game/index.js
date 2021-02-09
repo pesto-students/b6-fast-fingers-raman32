@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import './index.css'
-import NameCard from '../../components/NameCard'
 import LevelIndicator from '../../components/LevelIndicator'
 import Timer from '../../components/Timer'
 import WordDisplay from '../../components/WordDisplay'
 import ScoreCounter from '../../components/ScoreCounter'
 import TextBox from '../../components/TextBox'
-import StopGame from '../../components/StopGame'
 import ScoreBoard from '../../components/ScoreBoard'
 import EndScoreCard from '../../components/EndScoreCard'
-import Restart from '../../components/Restart';
 import getRandomizedWord from '../../utils/getWord'
-import Quit from '../../components/Quit'
+import  Button from '../../components/Button'
+import reloadIcon from '../../assets/icons/reload-icon.svg'
+import crossIcon from '../../assets/icons/cross-icon.svg'
+import Text from '../../components/Text'
 function Entry(props) {
     const { playerName, difficulty, setDifficulty, setPage } = props;
-    const [currentWord, setCurrentWord] = useState('start');
+    const [currentWord, setCurrentWord] = useState('');
     const [totalTime, setTotalTime] = useState(400);
     const [typedText, setTypedText] = useState('');
     const [isFinished, setIsFinished] = useState(false);
+    const [timerRestart, setTimerRestart] = useState(true);
     const [restart, setRestart] = useState(false);
     const [score, setScore] = useState(0);
     const [scores, setScores] = useState([]);
@@ -25,7 +26,8 @@ function Entry(props) {
     const getRandomizedWordMedium = getRandomizedWord(2);
     const getRandomizedWordHard = getRandomizedWord(3);
     useEffect(() => {
-        if (currentWord === typedText) {
+
+        if (currentWord === typedText || currentWord === '') {
             if (difficulty > 3)
                 setCurrentWord(getRandomizedWordHard());
             else if (difficulty > 2)
@@ -36,9 +38,9 @@ function Entry(props) {
             setTypedText('');
             setScore(score + totalTime);
             setTotalTime(Math.ceil(currentWord.length / difficulty) > 2 ? Math.ceil(currentWord.length / difficulty) * 100 : 200);
-
+            setTimerRestart(!timerRestart);
         }
-    }, [currentWord, difficulty, getRandomizedWordEasy, getRandomizedWordHard, getRandomizedWordMedium, score, setDifficulty, totalTime, typedText])
+    }, [currentWord, difficulty, getRandomizedWordEasy, getRandomizedWordHard, getRandomizedWordMedium, score, setDifficulty, totalTime, typedText,timerRestart])
     useEffect(() => {
         if (isFinished) {
             setScores((prev) => [...prev, score])
@@ -58,7 +60,7 @@ function Entry(props) {
         <div className="Game">
             <div className="header">
                 <div className="headerLeft">
-                    <NameCard name={playerName} />
+                    <Text text={`player_${playerName}`} />
                     <LevelIndicator level={difficulty} />
                 </div>
                 <div className="headerRight">
@@ -72,11 +74,11 @@ function Entry(props) {
                 <div className="scoreAndGameContainer">
                     <div className="scoreBoard" >
                         <ScoreBoard scores={scores} />
-                        <StopGame onStop={() => setIsFinished(true)} />
+                        <Button icon={crossIcon} text="Stop Game" onClick={()=>setIsFinished(true)} />
                     </div>
                     <div className="gameInner">
                         <div className="timer">
-                            <Timer totalTime={totalTime} onFinish={() => setIsFinished(true)} />
+                            <Timer totalTime={totalTime} onFinish={() => setIsFinished(true)} restart={timerRestart}/>
 
                         </div>
                         <WordDisplay word={currentWord} typedText={typedText} />
@@ -88,9 +90,9 @@ function Entry(props) {
                 :
                 <>
                     <EndScoreCard scores={scores} />
-                    <Restart setRestart={setRestart} />
+                    <Button icon={reloadIcon} text="Restart" onClick={()=>setRestart(true)} />
                     <div className="quit">
-                    <Quit onQuit={()=>setPage(0)} />
+                    <Button icon={crossIcon} text="Quit" onClick={()=>setPage(0)} />
                     </div>
                 </>
             }

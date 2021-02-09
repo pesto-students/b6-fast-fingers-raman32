@@ -1,9 +1,16 @@
 import React from 'react'
 import './index.css'
-function TextBox({text,setText,placeholder= ''}){
+function TextBox({text, setText, isError='false', placeholder= ''}){
 return (
     <div>
-        <input autoFocus className="textBox" type="text" placeholder={placeholder} value={text} onChange={(event)=>setText(event.target.value)} />
+        <input 
+            autoFocus 
+            className={isError ? "textBox error" : "textBox"} 
+            type="text" 
+            placeholder={placeholder} 
+            value={text} 
+            onChange={({target:{value}})=>setText(value.toLowerCase())} 
+        />
     </div>
 );
 }                           
