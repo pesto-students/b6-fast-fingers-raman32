@@ -1,20 +1,21 @@
 import React from 'react'
-import { convertToSecondsAndCenti } from '../../utils/time';
 import './index.css'
+import ScoreCard from '../ScoreCard'
 function ScoreBoard({scores}){
 const maxScore = Math.max(...scores);
-const scoreList = scores.map((element,index) => <div>
-    Game {index} : {convertToSecondsAndCenti(element)}
-    {element===maxScore ? "High" : ""}
-    </div>);
+const scoreList =  scores.map((element,index) => 
+    <ScoreCard 
+        gameId={index+1} 
+        score={element} 
+        isHighScore={element===maxScore} 
+    />
+    );
 return (
     <div className="ScoreBoard">
-        <div>
+        <div className="ScoreBoardHeader">
         SCORE BOARD
         </div>
-        <div>
         {scoreList}
-        </div>
     </div>
 );
 }                           

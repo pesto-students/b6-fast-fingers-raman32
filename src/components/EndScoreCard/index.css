@@ -1,6 +1,8 @@
 .EndScoreCard{
     text-align: center;
-    display: flex;
     justify-content: center;
     font-size: xxx-large;
+}
+.EndScoreCard div {
+    margin: 30px;
 }

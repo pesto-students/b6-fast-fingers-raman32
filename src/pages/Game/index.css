@@ -3,7 +3,6 @@
     padding: 10px;
     text-align: center;
 }
-
 .header{
     display: flex;
     flex-direction: row;
@@ -15,34 +14,14 @@
 .headerRight{
     text-align:right;
 }
-.headerLogo {
-    color: #A8242F;
-    font-size: large;
-}
-.timer{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-.scoreBoard{
-    flex: 1;
-    margin: 5px;
-    border-radius: 5px;
-    border: 1px white solid;
-
-}
-.gameInner{
-    
-}
-.collapsableDiv{
-    flex: 1;
-    flex-shrink: 2;
-}
-.scoreAndGameContainer{
+.body{
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
-.quit{
-    position: absolute;
+.footer{
+    position:absolute;
     bottom: 10px;
+    left:10px;
+    text-align: left;
 }

@@ -1,17 +1,18 @@
 import React from 'react'
+import { convertToMinutesAndSeconds } from '../../utils/time';
 import './index.css'
-function EndScoreCard({scores}){
+function EndScoreCard({ score, isHighScore }) {
 
-return(<div className="EndScoreCard">
-<div>
-    Your Score: {scores[scores.length -1]}
-</div>
-{
-    scores[scores.length-1] === Math.max(...scores)
-    &&
-    <div>
-HIGH SCORE
-</div>}
-</div>);
+    return (<div className="EndScoreCard">
+        <div>
+            Your Score
+        </div>
+        <div>
+            {convertToMinutesAndSeconds(score)}
+        </div>
+        <div>
+        { isHighScore ? "New High Score" : ""}
+        </div>
+    </div>);
 }
 export default EndScoreCard

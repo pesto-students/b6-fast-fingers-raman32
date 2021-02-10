@@ -1,16 +1,16 @@
-import wordList from '../data/dictionary.json'
-function getRandomizedWord(level){
-if(level<2){
-    const filteredArray =  wordList.filter((ele)=>ele.length <= 4)
-    return ()=>filteredArray[Math.floor(Math.random() * filteredArray.length)]
-}
-else if( level < 3){
-    const filteredArray =  wordList.filter((ele)=>ele.length > 4 && ele.length < 8)
-    return ()=>filteredArray[Math.floor(Math.random() * filteredArray.length)]
-}
-else {
-    const filteredArray =  wordList.filter((ele)=>ele.length > 8)
-    return ()=>filteredArray[Math.floor(Math.random() * filteredArray.length)]
+import dataEasy from '../data/1.json'
+import dataMedium from '../data/2.json'
+import dataHard from '../data/3.json'
+function getRandomizedWord(difficultyLevel){
+switch (difficultyLevel) {
+    case 'easy' :
+        return dataEasy[Math.floor(Math.random() * dataEasy.length)];
+    case 'medium' :
+        return dataMedium[Math.floor(Math.random() * dataMedium.length)];
+    case 'hard' :
+        return dataHard[Math.floor(Math.random() * dataHard.length)];
+    default :
+        return dataEasy[Math.floor(Math.random() * dataEasy.length)];
 }
 }
 export default getRandomizedWord;

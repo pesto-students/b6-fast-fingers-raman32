@@ -3,8 +3,12 @@ import './index.css'
 function DropDownList({ items, setItem, placeholder }) {
     const [selected,setSelected] = useState('');
     const options = items.map((item) =>
-        <div className="options" onClick={() =>  {setSelected(item.label); setItem(item.value);}}>
-            {item.label}
+        <div 
+            className="options" 
+            key={item.label}
+            onClick={() =>  {setSelected(item.label); setItem(item.value);}}
+        >
+                {item.label}
         </div>);
     return (
         <div className="dropdown">

@@ -1,12 +1,13 @@
 import React from 'react'
 import './index.css'
-function TextBox({text, setText, isError='false', placeholder= ''}){
+function TextBox({text, setText, isError=false, placeholder= '', textAlign='left'}){
 return (
-    <div>
+    <div className="textBoxContainer">
         <input 
             autoFocus 
             className={isError ? "textBox error" : "textBox"} 
-            type="text" 
+            style={{textAlign:textAlign}}
+            type="text"     
             placeholder={placeholder} 
             value={text} 
             onChange={({target:{value}})=>setText(value.toLowerCase())} 

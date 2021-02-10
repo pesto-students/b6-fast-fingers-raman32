@@ -1,0 +1,8 @@
+.GameArea{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    align-self: center;
+}

@@ -1,16 +1,18 @@
 import React from 'react'
-import { convertToSecondsAndCenti } from '../../utils/time';
+import { convertToMinutesAndSeconds } from '../../utils/time';
 import './index.css'
 function ScoreCard({gameId, score, isHighScore}){
 return (
-    <div>
-        <div>
+    <div className="ScoreCard">
+        <div >
         SCORE : GAME {gameId} 
         </div>
         <div>
-            {convertToSecondsAndCenti(score)}
+            {convertToMinutesAndSeconds(score)}
         </div>
-        {isHighScore && <div> New High Score</div>}
+        <div>
+        {isHighScore ? "New High Score" : ""}
+        </div>
     </div>
 );
 }                           
