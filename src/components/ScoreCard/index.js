@@ -4,14 +4,15 @@ import './index.css'
 function ScoreCard({gameId, score, isHighScore}){
 return (
     <div className="ScoreCard">
-        <div >
-        SCORE : GAME {gameId} 
+        <div className="gameText">
+        GAME {gameId} 
         </div>
-        <div>
+        <div className="scoreText">
             {convertToMinutesAndSeconds(score)}
+       
+        <div className="highScoreBadge">
+        {isHighScore ? "High" : ""}
         </div>
-        <div>
-        {isHighScore ? "New High Score" : ""}
         </div>
     </div>
 );

@@ -2,7 +2,11 @@
     text-align: center;
     justify-content: center;
     font-size: xxx-large;
+    border: 1px white solid;
+    align-self: center;
+    margin-top: 20vh;
+    margin-bottom: 2rem;
 }
 .EndScoreCard div {
-    margin: 30px;
+    margin: 50px;
 }

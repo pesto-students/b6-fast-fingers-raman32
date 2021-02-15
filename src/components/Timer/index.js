@@ -26,8 +26,8 @@ function Timer({totalTime, onFinish, timerControl}) {
         }
     }, [onFinish, time, total])
     return (
-        <ProgressCircle progress={progress}>
-            {convertToMinutesAndSeconds(time)}
+        <ProgressCircle progress={progress} size={240}>
+            <span className="timeText">{convertToMinutesAndSeconds(time)}</span>
         </ProgressCircle>
     );
 }

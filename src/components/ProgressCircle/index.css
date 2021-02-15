@@ -8,7 +8,7 @@
     position: absolute;
     border-radius: 50%;
     box-sizing: border-box;
-    transition: linear transform .01;  
+    transition: transform .1s;  
 }
 .container .background {
     border: 10px solid gray;
