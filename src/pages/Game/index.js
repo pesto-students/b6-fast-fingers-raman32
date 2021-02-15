@@ -10,6 +10,8 @@ import Text from '../../components/Text'
 
 import reloadIcon from '../../assets/icons/reload-icon.svg'
 import crossIcon from '../../assets/icons/cross-icon.svg'
+import personIcon from '../../assets/icons/person-icon.svg'
+import gamepadIcon from '../../assets/icons/gamepad-icon.svg'
 
 import { getDifficulty } from '../../utils/difficulty'
 import { convertToMinutesAndSeconds } from '../../utils/time'
@@ -39,8 +41,8 @@ function Game() {
         <div className="Game">
             <div className="header">
                 <div className="headerLeft">
-                    <Text text={`player_${playerName}`} />
-                    <Text text={`difficulty: ${getDifficulty(difficulty)}`} />
+                    <Text icon={personIcon} text={`player_${playerName}`} />
+                    <Text icon={gamepadIcon} text={`difficulty: ${getDifficulty(difficulty)}`} />
                 </div>
                 <div className="headerRight">
                     <Text text="Fast Fingers" />
