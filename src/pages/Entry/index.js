@@ -11,7 +11,7 @@ import { difficulties } from '../../utils/difficulty'
 import useName from '../../hooks/useName'
 
 function Entry() {
-    const { name, setName, emptyError } = useName('');
+    const { name, setName, emptyError, setEmptyShowError } = useName('');
     const [difficulty, setDifficulty] = useState(1);
 
 
@@ -21,12 +21,12 @@ function Entry() {
             <div className="logoTitle"> fast finger</div>
             <div className="logoDescription">____________the ultimate typing game___________</div>
             <TextBox text={name} setText={setName} placeholder="Type your name" isError={emptyError} />
-            {emptyError ? <div> Please Enter your Name </div> : null}
+            {emptyError ? <div className="errorText"> Please Enter your Name </div> : null}
             <DropDownList items={difficulties} setItem={setDifficulty} placeholder="Difficulty Level" />
-            <Link to={`${routes.game}/${name}/${difficulty}`} >
+            <Link to={name !== '' ? `${routes.game}/${name}/${difficulty}` : "#"} onClick={() => !name && setEmptyShowError(true)} >
                 <Button icon={playIcon} text="Start Game" />
             </Link>
-        </div>
+        </div>  
     );
 }
 export default Entry
