@@ -12,13 +12,13 @@ import { getTotalTime } from '../../utils/time';
 const initialState = { start: false, restart: false };
 
 function reducer(state, action) {
-    switch (action) {
+    switch (action.type) {
         case 'start':
             return { start: true, restart: false }
         case 'restart':
             return { ...state, restart: !state.restart };
         default:
-            throw new Error();
+            return state;
     }
 }
 
@@ -30,13 +30,13 @@ function GameArea({ difficulty, setDifficulty, setScore, handleFinish }) {
 
     useEffect(() => {
         if(!!text)
-            dispatch('start');
+            dispatch({type:'start'});
         if (word !== '' && word === text) {
             setScore((prev) => prev + getTotalTime(difficulty, word.length));
             setDifficulty((prev) => parseFloat(prev) + 0.01);
             setWord(getRandomizedWord(getDifficulty(difficulty)));
             setText('');
-            dispatch('restart');
+            dispatch({type:'restart'});
         }
     }, [text, word, difficulty, setScore, setDifficulty])
     return (

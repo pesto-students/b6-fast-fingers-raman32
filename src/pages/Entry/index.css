@@ -6,9 +6,6 @@
     justify-content: center;
     align-items: center;
 }
-.Entry div{
-    margin:5px
-}
 .logoTitle{
     color: #A8242F;
     font-size: xx-large;
@@ -20,4 +17,7 @@
 .keyboardLogo{
     width: 100px;
     height: 100px;
+}
+.errorText{
+    color: white    ;
 }

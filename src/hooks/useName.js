@@ -12,7 +12,8 @@ function useName(val) {
     return {
         name, 
         setName, 
-        emptyError
+        emptyError,
+        setEmptyShowError
     }
 }
 export default useName;

@@ -11,8 +11,9 @@ function DropDownList({ items, setItem, placeholder }) {
                 {item.label}
         </div>);
     return (
+        
         <div className="dropdown">
-            <div className="placeholder">{!selected ? placeholder : selected}</div>
+            <div className="options">{!selected ? placeholder : selected}</div>
             <div className="dropdown-content" >
                 {options}
             </div>
