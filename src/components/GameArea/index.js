@@ -29,7 +29,7 @@ function GameArea({ difficulty, setDifficulty, setScore, handleFinish }) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        if(!!text)
+        if(!!text && !state.start)
             dispatch({type:'start'});
         if (word !== '' && word === text) {
             setScore((prev) => prev + getTotalTime(difficulty, word.length));
@@ -38,7 +38,7 @@ function GameArea({ difficulty, setDifficulty, setScore, handleFinish }) {
             setText('');
             dispatch({type:'restart'});
         }
-    }, [text, word, difficulty, setScore, setDifficulty])
+    }, [text, word, difficulty, setScore, setDifficulty, state.start])
     return (
         <div className="GameArea">
             <Timer

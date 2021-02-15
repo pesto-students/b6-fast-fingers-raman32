@@ -3,7 +3,9 @@
    flex:1;
    padding: 5px; 
    align-self: start;
-   min-height: 60vh;
+   height: 60vh;
+   min-width: 200px;
+   overflow: hidden;
 }
 .ScoreBoardHeader{
     color: red;

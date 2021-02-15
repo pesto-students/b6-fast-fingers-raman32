@@ -1,7 +1,7 @@
 export const difficulties = [
     {label:"Easy", value:1},
-    {label:"Medium", value:2},
-    {label:"Hard", value:3}
+    {label:"Medium", value:1.5},
+    {label:"Hard", value:2}
 ]
 export const getDifficulty = (difficultyFactor)=>{
     if(difficultyFactor >=2 ){
