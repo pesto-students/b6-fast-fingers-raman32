@@ -7,8 +7,12 @@
    min-width: 200px;
    overflow: hidden;
 }
-.ScoreBoardHeader{
+.scoreBoardHeader{
     color: red;
     font-size: x-large;
 
+}
+.scoresContainer{
+    display: flex;
+    flex-direction: column-reverse;
 }

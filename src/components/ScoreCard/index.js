@@ -1,17 +1,17 @@
 import React from 'react'
-import { convertToMinutesAndSeconds } from '../../utils/time';
+import { convertToMinutesAndSeconds } from '../../utils/time'
 import './index.css'
+
 function ScoreCard({gameId, score, isHighScore}){
 return (
     <div className="ScoreCard">
         <div className="gameText">
-        GAME {gameId} 
+            GAME: {gameId} 
         </div>
         <div className="scoreText">
-            {convertToMinutesAndSeconds(score)}
-       
+        <div>{convertToMinutesAndSeconds(score)}</div>
         <div className="highScoreBadge">
-        {isHighScore ? "High" : ""}
+            {isHighScore ? "High" : ""}
         </div>
         </div>
     </div>

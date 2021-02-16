@@ -3,17 +3,6 @@
     padding: 10px;
     text-align: center;
 }
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.headerLeft {
-    text-align: left;
-}
-.headerRight{
-    text-align:right;
-}
 .body{
     margin-top: 2rem;
     display: flex;

@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './index.css'
 import ProgressCircle from '../ProgressCircle'
 import { convertToMinutesAndSeconds } from '../../utils/time';
-function Timer({totalTime, onFinish, timerControl}) {
-    const {start, restart} = timerControl;
-    const [time, setTime] =useState(0);
-    const [total,setTotal] = useState(0);
-    const [progress, setProgress] = useState(0);
+import useTimer from '../../hooks/useTimer';
+function Timer({timerControl, onFinish}) {
+    
+    const {start, restart, totalTime} = timerControl;
+    const {time, setStart, setRestart} = useTimer(totalTime);
+    
     useEffect(()=>{
-        setTotal(totalTime);
-        setTime(0);
-    },[restart, totalTime])
+        if(start)
+         setStart(true);
+     },[setStart, start])
+
     useEffect(()=>{
-        let timer;
-        if(start){
-        setInterval(()=>setTime((prev)=>parseInt(prev)+10),100);
-        }
-        return ()=>{clearInterval(timer)}
-    },[start])
+        if(start)
+        setRestart(true);
+    },[restart, setRestart, start])
+   
     useEffect(() => {
-        setProgress(time  * 100/ total);
-        if(!!total && time>total){
+        if(time < 0)
             onFinish();
-            setTime(0);
-        }
-    }, [onFinish, time, total])
+    }, [time, onFinish])
+
     return (
-        <ProgressCircle progress={progress} size={240}>
+        <ProgressCircle progress={time*100/totalTime} size={240}>
             <span className="timeText">{convertToMinutesAndSeconds(time)}</span>
         </ProgressCircle>
     );
