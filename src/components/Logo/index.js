@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 import keyboardIcon from '../../assets/icons/keyboard-icon.svg'
-function LevelIndicator({level}){
+function Logo(){
 return (
     <div className="Logo">
             <img className="keyboardLogo" src={keyboardIcon} alt="logo" />
@@ -10,4 +10,4 @@ return (
     </div>
 );
 }                           
-export default LevelIndicator
+export default Logo
