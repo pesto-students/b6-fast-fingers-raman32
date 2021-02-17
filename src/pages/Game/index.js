@@ -48,7 +48,7 @@ function Game() {
                             setScore={setScore}
                             handleFinish={handleFinish}
                         />
-                        <div style={{flex:1,flexShrink:2}} />
+                        <div style={{flex:1,flexShrink:.5}}></div>
                     </>
                     :
                     <div>
