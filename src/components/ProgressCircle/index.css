@@ -11,18 +11,18 @@
     transition: transform .1s;  
 }
 .container .background {
-    border: 10px solid gray;
+    border: 20px solid gray;
 }
 .container .rotate {
-    border: 10px solid red;
+    border: 20px solid red;
 }
 .container .left {
-    border: 10px solid gray;
+    border: 20px solid gray;
   
 }
 .container .right {
     transform: rotate(180deg);
-    border: 10px solid red;
+    border: 20px solid red;
 }
 .textContainer {
     display: flex;
