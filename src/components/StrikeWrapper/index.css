@@ -1,0 +1,16 @@
+.wrapperStyles{
+    color: #A8242F;
+    font-size: small;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.strike{
+    margin: 2px;
+    align-self: center;
+    width: 100px;
+    height: .05rem;
+    background-color: #A8242F;
+    
+
+}

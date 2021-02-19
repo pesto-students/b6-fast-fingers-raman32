@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './index.css'
-function ProgressCircle(props) {
-    const {
-        size = 120,
-        progress = 0
-    } = props;
+function ProgressCircle({size = 120, progress = 1, ...props }) {
     const [rotateStyle, setRotateStyle] = useState({});
     useEffect(() => {
         setRotateStyle({

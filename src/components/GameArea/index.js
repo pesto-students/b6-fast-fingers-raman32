@@ -7,9 +7,7 @@ import TextBox from '../../components/TextBox'
 function GameArea({textControl: {word,text,setText}, timeControl}) {    
     return (
         <div className="GameArea">
-            <Timer
-                {...timeControl}
-            />
+            <Timer {...timeControl}/>
             <WordDisplay word={word} typedText={text} />
             <TextBox text={text} setText={setText} textAlign="center" />
         </div>

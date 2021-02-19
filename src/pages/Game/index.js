@@ -21,7 +21,7 @@ function Game() {
     const {gameControl,textControl,timeControl,score,difficulty} = useGame(Number(initialDifficulty));
 
     let scores = useRef(getScoresFromLocalStorage());
-
+    
     return (
         <div className="Game">
             <Header difficulty={difficulty} playerName={playerName} score={score} />
