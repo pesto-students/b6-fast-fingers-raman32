@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react"
 
-import getRandomizedWord from '../utils/getWord'
-import { getDifficulty } from '../utils/difficulty'
-
-function useWord(difficulty, onComplete) {
-    const [word, setWord] = useState(getRandomizedWord(getDifficulty(difficulty)));
+function useWord(val, onSuccesfulEntry) {
+    const [word, setWord] = useState(val);
     const [text, setText] = useState('');
     useEffect(() => {
         if (word !== '' && word === text) {
-            const newWord = getRandomizedWord(getDifficulty(difficulty));
-            setWord(newWord);
-            onComplete(newWord);
             setText('');
+            const prevVal = word;
+            setWord(val);
+            onSuccesfulEntry(prevVal);
         }
-    }, [text, word, difficulty, onComplete])
-    return { word, text, setText }
+    }, [text, word, val, onSuccesfulEntry])
+    return { word, text, setText}
 }
 export default useWord;

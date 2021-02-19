@@ -1,4 +1,4 @@
-import React, { useRef, useState} from 'react'
+import React, { useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import './index.css'
 
@@ -12,41 +12,26 @@ import reloadIcon from '../../assets/icons/reload-icon.svg'
 import crossIcon from '../../assets/icons/cross-icon.svg'
 
 import { routes } from '../../utils/constants'
-import {addScoreToLocalStorage, getScoresFromLocalStorage} from '../../utils/storage'
+import {getScoresFromLocalStorage} from '../../utils/storage'
+import useGame from '../../hooks/useGame'
 
  
 function Game() {
     const { playerName, initialDifficulty } = useParams();
-    const [difficulty, setDifficulty] = useState(parseFloat(initialDifficulty));
-    const [isFinished, setIsFinished] = useState(false);
-    const [score, setScore] = useState(0);
+    const {gameControl,textControl,timeControl,score,difficulty} = useGame(Number(initialDifficulty));
 
     let scores = useRef(getScoresFromLocalStorage());
 
-    const handleFinish = () => {
-        if(score !==0 )
-            addScoreToLocalStorage(score);
-        scores.current = getScoresFromLocalStorage();
-        setIsFinished(true);
-    }
-
-    const handleRestart = () => {
-        setScore(0);
-        setDifficulty(parseFloat(initialDifficulty));
-        setIsFinished(false);
-    }
     return (
         <div className="Game">
             <Header difficulty={difficulty} playerName={playerName} score={score} />
             <div className="body">
-                {!isFinished ?
+                {gameControl.gameState==="running" ?
                     <>
                         <ScoreBoard scores={scores.current} />
                         <GameArea
-                            difficulty={difficulty}
-                            setDifficulty={setDifficulty}
-                            setScore={setScore}
-                            handleFinish={handleFinish}
+                           textControl={textControl}
+                           timeControl={timeControl}
                         />
                         <div style={{flex:1,flexShrink:.5}}></div>
                     </>
@@ -56,14 +41,14 @@ function Game() {
                             score={score} 
                             isHighScore={Math.max(...scores.current)===score} 
                         />
-                        <Button icon={reloadIcon} text="Restart" onClick={handleRestart} />
+                        <Button icon={reloadIcon} text="Restart" onClick={()=>gameControl.restartGame()} />
                     </div>
                 }
             </div>
 
             <div className="footer">
-                {!isFinished ?
-                    <Button icon={crossIcon} text="Stop Game" onClick={handleFinish} /> :
+                {gameControl.gameState==="running"  ?
+                    <Button icon={crossIcon} text="Stop Game" onClick={()=>gameControl.stopGame()} /> :
                     <Link to={routes.entry}>
                         <Button icon={crossIcon} text="Quit" />
                     </Link>
