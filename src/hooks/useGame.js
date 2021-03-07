@@ -43,29 +43,27 @@ function useGame(initialDifficulty) {
     gameState: "running",
   });
 
-  const { word, text, setText } = useWord(
-    getDifficulty(difficulty),
-    // eslint-disable-next-line no-use-before-define
-    onSuccesfulEntry
-  );
-
-  const { time, setStart, setRestart } = useTimer(
-    getTotalTime(difficulty, word.length),
-    // eslint-disable-next-line no-use-before-define
-    stopGame
-  );
-  const onSuccesfulEntry = useCallback((prev) => {
+  const onSuccesfulEntry = (prev) => {
     dispatch({
       type: "game/success",
       payload: { wordLength: prev.length },
     });
     setRestart(true);
-  }, [setRestart]);
+  }
 
-  const stopGame = useCallback(() => {
+  const stopGame = () => {
     dispatch({ type: "game/stop", payload: { initialDifficulty } });
     setText("");
-  }, [initialDifficulty, setText]);
+  }
+  const { word, text, setText } = useWord(
+    getDifficulty(difficulty),
+    onSuccesfulEntry
+  );
+
+  const { time, setStart, setRestart } = useTimer(
+    getTotalTime(difficulty, word.length),
+    stopGame
+  );
   const restartGame = useCallback(() => {
     dispatch({ type: "game/restart", payload: { initialDifficulty } });
     setStart(false);
