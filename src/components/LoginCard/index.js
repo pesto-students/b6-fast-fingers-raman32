@@ -1,12 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../App";
-import useFetchPost from "../../hooks/useFetchPost";
+import React, {  } from "react";
 import useLogin from "../../hooks/useLogin";
-import { USER_LOGIN_API_ENDPOINT } from "../../utils/constants";
 import ButtonWithSpinner from "../ButtonWithSpinner";
 import Input from "../Input";
 import SnackBar from "../SnackBar";
-import Spinner from "../Spinner";
 import "./index.css";
 function LoginCard() {
   const {

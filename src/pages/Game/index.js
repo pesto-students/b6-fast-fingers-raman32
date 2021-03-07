@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import "./index.css";
 
@@ -20,9 +20,9 @@ function Game() {
   const { initialDifficulty } = useParams();
   const { user } = useContext(UserContext);
   const history = useHistory();
-  // if (!user.loggedIn) {
-  //   history.push(routes.login);
-  // }
+  if (!user.loggedIn) {
+    history.push(routes.login);
+  }
 
   const { gameControl, textControl, timeControl, score, difficulty } = useGame(
     Number(initialDifficulty)

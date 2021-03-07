@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useReducer, useState } from "react";
+import { useEffect, useCallback, useReducer } from "react";
 import { getTotalTime } from "../utils/time";
 import useWord from "./useWord";
 import useTimer from "./useTimer";
@@ -43,40 +43,42 @@ function useGame(initialDifficulty) {
     gameState: "running",
   });
 
+  const { word, text, setText } = useWord(
+    getDifficulty(difficulty),
+    // eslint-disable-next-line no-use-before-define
+    onSuccesfulEntry
+  );
+
+  const { time, setStart, setRestart } = useTimer(
+    getTotalTime(difficulty, word.length),
+    // eslint-disable-next-line no-use-before-define
+    stopGame
+  );
   const onSuccesfulEntry = useCallback((prev) => {
     dispatch({
       type: "game/success",
       payload: { wordLength: prev.length },
     });
     setRestart(true);
-  }, []);
+  }, [setRestart]);
 
   const stopGame = useCallback(() => {
     dispatch({ type: "game/stop", payload: { initialDifficulty } });
     setText("");
-  }, [initialDifficulty]);
+  }, [initialDifficulty, setText]);
   const restartGame = useCallback(() => {
     dispatch({ type: "game/restart", payload: { initialDifficulty } });
     setStart(false);
-  }, [initialDifficulty]);
+  }, [initialDifficulty, setStart]);
 
   const pauseGame = useCallback(() => {
     setStart(false);
     dispatch({ type: "game/pause", payload: {} });
-  }, []);
+  }, [setStart]);
 
   const quitGame = useCallback(() => {
     //Future Logic Implementation for Quit Directly
   }, []);
-  const { word, text, setText } = useWord(
-    getDifficulty(difficulty),
-    onSuccesfulEntry
-  );
-
-  const { time, setStart, setRestart } = useTimer(
-    getTotalTime(difficulty, word.length),
-    stopGame
-  );
 
   useEffect(() => {
     if (text !== "") setStart(true);

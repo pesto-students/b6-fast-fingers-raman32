@@ -3,7 +3,6 @@ import useSignUp from "../../hooks/useSignUp";
 import ButtonWithSpinner from "../ButtonWithSpinner";
 import Input from "../Input";
 import SnackBar from "../SnackBar";
-import Spinner from "../Spinner";
 import "./index.css";
 function SignUpCard() {
   const {

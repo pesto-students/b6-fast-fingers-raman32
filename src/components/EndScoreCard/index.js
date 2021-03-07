@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useMemo } from "react";
 import useFetchPost from "../../hooks/useFetchPost";
 import { USER_ADD_SCORE_API_ENDPOINT } from "../../utils/constants";
 import { convertToMinutesAndSeconds } from "../../utils/time";
