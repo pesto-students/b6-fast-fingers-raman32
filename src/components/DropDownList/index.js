@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import DropDownOption from '../DropDownOption';
+import DropDownOption from './DropDownOption';
 import './index.css'
 function DropDownList({ items, setItem, placeholder }) {
     const [selected,setSelected] = useState('');

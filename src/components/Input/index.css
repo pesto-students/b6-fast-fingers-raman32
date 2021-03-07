@@ -1,0 +1,18 @@
+.errorText{
+    color: red;
+}
+.Input input{
+    width: 20rem;
+    height: 3rem;
+    background-color: cornsilk;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    border: 0px;
+    margin: .25rem;   
+    font-size: large;
+}
+
+.Input input ::placeholder {
+    color: black;
+    font-size: large;
+}

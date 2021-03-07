@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-function useTimer(value, onSuccesfulEntry) {
+function useTimer(value,onTimerEnd) {
     const [time, setTime] = useState(value);
     const [start, setStart] = useState(false);
     const [restart, setRestart] = useState(false);
@@ -13,13 +13,13 @@ function useTimer(value, onSuccesfulEntry) {
         if (time <= 0) {
             clearInterval(timer.current);
             setStart(false);
+            setRestart(true)
+            onTimerEnd();
         }
-    }, [time])
+    }, [onTimerEnd, time])
     useEffect(() => {
-        if (restart){
-            setTime(value);
-        }
-        setRestart(false);
+        setTime(value);
+        setRestart(false)   ;
     }, [restart, value])
 
     return {

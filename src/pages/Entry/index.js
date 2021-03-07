@@ -1,46 +1,40 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { routes } from '../../utils/constants'
-import './index.css'
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { routes } from "../../utils/constants";
+import "./index.css";
 
-import TextBox from '../../components/TextBox'
-import DropDownList from '../../components/DropDownList'
-import Button from '../../components/Button'
-import Logo from '../../components/Logo'
+import DropDownList from "../../components/DropDownList";
+import Button from "../../components/Button";
+import Logo from "../../components/Logo";
 
-import playIcon from '../../assets/icons/play-icon.svg'
+import playIcon from "../../assets/icons/play-icon.svg";
 
-import { difficulties } from '../../utils/difficulty'
-import useName from '../../hooks/useName'
+import { difficulties } from "../../utils/difficulty";
+import { UserContext } from "../../App";
 
 function Entry() {
-    const { name, setName, emptyError, setEmptyShowError } = useName('');
-    const [difficulty, setDifficulty] = useState(1);
-    return (
-        <div className="Entry">
-            <Logo />
-            <TextBox
-                text={name}
-                setText={setName}
-                placeholder="Type your name"
-                isError={emptyError}
-            />
-            { emptyError ?
-                <div className="errorText"> Please Enter your Name </div> :
-                null
-            }
-            <DropDownList
-                items={difficulties}
-                setItem={setDifficulty}
-                placeholder="Difficulty Level"
-            />
-            <Link
-                to={name !== '' ? `${routes.game}/${name}/${difficulty}` : "#"}
-                onClick={() => !name && setEmptyShowError(true)}
-            >
-                <Button icon={playIcon} text="Start Game" />
-            </Link>
-        </div>
-    );
+  const { user,setUser } = useContext(UserContext);
+  const [difficulty, setDifficulty] = useState(1);
+  const history = useHistory();
+  if (!user.loggedIn) {
+    history.push(routes.login);
+  }
+
+  return (
+    <div className="Entry">
+      <Logo />
+      <div className="welcomeText"> Welcome!!! {user.name} </div>
+      <DropDownList
+        items={difficulties}
+        setItem={setDifficulty}
+        placeholder="Difficulty Level"
+      />
+      <Link to={`${routes.game}/${difficulty}`}>
+        <Button icon={playIcon} text="Start Game" />
+      </Link>
+
+      <button onClick={()=>setUser({})} > Logout </button>
+    </div>
+  );
 }
-export default Entry
+export default Entry;

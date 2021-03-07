@@ -1,95 +1,107 @@
-import { useEffect, useCallback, useReducer } from 'react'
-import { getTotalTime } from '../utils/time';
-import useWord from './useWord'
-import useTimer from './useTimer'
-import { DIFFICULTY_INCREMENT_FACTOR } from '../utils/constants';
-import { addScoreToLocalStorage } from '../utils/storage';
-import { getDifficulty } from '../utils/difficulty';
-import getRandomizedWord from '../utils/getWord';
+import { useEffect, useCallback, useReducer, useState } from "react";
+import { getTotalTime } from "../utils/time";
+import useWord from "./useWord";
+import useTimer from "./useTimer";
+import { DIFFICULTY_INCREMENT_FACTOR } from "../utils/constants";
+import { getDifficulty } from "../utils/difficulty";
 
 function reducer(state, { type, payload: { initialDifficulty, wordLength } }) {
-    switch (type) {
-        case "game/success":
-            return { ...state,  difficulty: state.difficulty + DIFFICULTY_INCREMENT_FACTOR, score: state.score + getTotalTime(state.difficulty, wordLength) };
-        case "game/start":
-            return { ...state, difficulty: initialDifficulty, score: 0, gameState: "running" };
-        case "game/stop":
-            return { ...state, difficulty: initialDifficulty, gameState: "stopped" };
-        case "game/pause":
-            return { ...state, gameState: "paused" };
-        case "game/restart":
-            return { ...state, difficulty: initialDifficulty, score: 0, gameState: "running" };
-
-        default:
-            return state;
-    }
+  switch (type) {
+    case "game/success":
+      return {
+        ...state,
+        difficulty: state.difficulty + DIFFICULTY_INCREMENT_FACTOR,
+        score: state.score + getTotalTime(state.difficulty, wordLength),
+      };
+    case "game/start":
+      return {
+        ...state,
+        difficulty: initialDifficulty,
+        score: 0,
+        gameState: "running",
+      };
+    case "game/stop":
+      return { ...state, difficulty: initialDifficulty, gameState: "stopped" };
+    case "game/pause":
+      return { ...state, gameState: "paused" };
+    case "game/restart":
+      return {
+        ...state,
+        difficulty: initialDifficulty,
+        score: 0,
+        gameState: "running",
+      };
+    default:
+      return state;
+  }
 }
 
 function useGame(initialDifficulty) {
-    const [{ gameState, difficulty, score }, dispatch] = useReducer(reducer, { difficulty: initialDifficulty, score: 0, gameState: "running" });
-    
-    const onSuccesfulEntry = (prev) => {
-        dispatch({ type: "game/success", payload: { initialDifficulty, wordLength: prev.length } });
-        setRestart(true);
-    }
-    const { word, text, setText } = useWord(getRandomizedWord(getDifficulty(difficulty)), onSuccesfulEntry);
-    const { time, setStart, setRestart } = useTimer(getTotalTime(difficulty, word.length));
+  const [{ gameState, difficulty, score }, dispatch] = useReducer(reducer, {
+    difficulty: initialDifficulty,
+    score: 0,
+    gameState: "running",
+  });
 
+  const onSuccesfulEntry = useCallback((prev) => {
+    dispatch({
+      type: "game/success",
+      payload: { wordLength: prev.length },
+    });
+    setRestart(true);
+  }, []);
 
-    const restartGame = () => {
-        dispatch({ type: "game/restart", payload: { initialDifficulty} })
-        setStart(false);
-    }
+  const stopGame = useCallback(() => {
+    dispatch({ type: "game/stop", payload: { initialDifficulty } });
+    setText("");
+  }, [initialDifficulty]);
+  const restartGame = useCallback(() => {
+    dispatch({ type: "game/restart", payload: { initialDifficulty } });
+    setStart(false);
+  }, [initialDifficulty]);
 
-    const pauseGame = () => {
-        setStart(false);
-        dispatch({type: "game/pause", payload: {}});
-    }
+  const pauseGame = useCallback(() => {
+    setStart(false);
+    dispatch({ type: "game/pause", payload: {} });
+  }, []);
 
-    const quitGame = () => {
-        //Future Logic Implementation for Quit Directly
-    }
+  const quitGame = useCallback(() => {
+    //Future Logic Implementation for Quit Directly
+  }, []);
+  const { word, text, setText } = useWord(
+    getDifficulty(difficulty),
+    onSuccesfulEntry
+  );
 
-    const stopGame = useCallback(() => {
-        dispatch({ type: "game/stop", payload: { initialDifficulty} })
-        setStart(false);
-        setRestart(true);
-        setText('');
-        if (score !== 0)
-            addScoreToLocalStorage(score);
-    }, [initialDifficulty, score, setRestart, setStart, setText]);
+  const { time, setStart, setRestart } = useTimer(
+    getTotalTime(difficulty, word.length),
+    stopGame
+  );
 
-    useEffect(() => {
-        if (time <= 0)
-            stopGame();
-    }, [time, stopGame])
+  useEffect(() => {
+    if (text !== "") setStart(true);
+  }, [setStart, text]);
 
-    useEffect(() => {
-        // Starts the timer to start at first text entry
-        if (text !== '') {
-            setStart(true)
-        }
-    }, [setStart, text])
-    return {
-        gameControl: {
-            gameState,
-            pauseGame,
-            restartGame,
-            quitGame,
-            stopGame
-        },
-        textControl: {
-            word,
-            text,
-            setText
-        },
-        timeControl: {
-            time,
-            totalTime: getTotalTime(difficulty, word.length),
-        },
-        score,
-        difficulty
-    }
+  return {
+    gameControl: {
+      gameState,
+      pauseGame,
+      restartGame,
+      quitGame,
+      stopGame,
+    },
+    textControl: {
+      word,
+      text,
+      setText,
+    },
+    timeControl: {
+      time,
+      totalTime: getTotalTime(difficulty, word.length),
+    },
+    score,
+    difficulty,
+  };
 }
 
-export default useGame
+export default useGame;

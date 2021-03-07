@@ -1,0 +1,19 @@
+.ButtonWithSpinner{
+    align-self: center;
+    min-width: 10rem;
+    height: 3rem;
+    border-radius: 4rem;
+    border: 0px;
+    margin: .25rem;   
+    font-size: larger;
+    color: cornsilk;
+    font-weight: 600;
+    text-align: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+.ButtonWithSpinner div {
+    margin-right: 1rem;
+}

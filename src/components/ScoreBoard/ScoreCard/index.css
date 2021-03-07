@@ -1,7 +1,12 @@
 .ScoreCard{
     display: flex;
     justify-content: space-around;
-    margin-top: 1rem;
+    margin: .25rem;
+    padding: .5rem;
+    border-color:rgb(37, 92, 245);
+    border-bottom-width: 2px;
+    border-style: solid;
+
 }
 .gameText{
     flex: 1;
@@ -14,6 +19,7 @@
 }
 .highScoreBadge{
     margin-left: 1rem;
+    padding: 2px;
     background-color: tomato;
     color: white;
     font-size: small;

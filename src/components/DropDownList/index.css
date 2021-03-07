@@ -18,8 +18,8 @@
     display: block;
   } 
 .options{
-  background-color: #ffffff00;
-  color: #8A9699;
+  background-color: #8A9699;
+  color: #000000;
   height: 20px;
   text-align: left;
   padding-left: 1rem;
@@ -34,5 +34,5 @@
   width: 300px-2rem;
 }
 .options:hover{
-  background-color: #000000;
+  background-color: #525a5c;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css'
-import Timer from '../../components/Timer'
-import WordDisplay from '../../components/WordDisplay'
-import TextBox from '../../components/TextBox'
+import Timer from './Timer'
+import WordDisplay from './WordDisplay'
+import TextBox from './TextBox'
 
 function GameArea({textControl: {word,text,setText}, timeControl}) {    
     return (
