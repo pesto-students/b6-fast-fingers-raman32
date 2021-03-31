@@ -1,0 +1,32 @@
+.Entry{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.errorText{
+    color: white    ;
+}
+.welcomeText{
+    color: white    ;
+    font-size: xx-large;
+    font-family: monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+
+}
+.Entry  button {
+    cursor: pointer;
+    align-self: center;
+    width: 8rem;
+    height: 3rem;
+    background-color: rgb(175, 8, 8);
+    border-radius: 4rem;
+    border: 0px;
+    margin: .25rem;   
+    font-size: larger;
+    color: cornsilk;
+    font-weight: 600;
+}

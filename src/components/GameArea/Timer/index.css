@@ -1,0 +1,9 @@
+.progressCircle {
+    border: 50%;
+    border-width: 5rem;
+    border-style: double;
+}
+.timeText {
+    text-align: center;
+    font-size: xx-large;
+}

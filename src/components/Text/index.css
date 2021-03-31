@@ -1,0 +1,14 @@
+.iconText{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;   
+    align-items: center;
+    font-family: monospace;
+    font-size: x-large; 
+}
+.icon{
+    width: 25px;
+    height: 25px;
+    margin: 0.5rem;
+    margin-right: 1rem;
+}

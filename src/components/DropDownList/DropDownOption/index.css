@@ -1,0 +1,19 @@
+.options{
+    background-color: #ffffff00;
+    color: #8A9699;
+    height: 20px;
+    text-align: left;
+    padding-left: 1rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top:4px;
+    font-size: 16px;
+    border: #8A9699 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 300px-2rem;
+  }
+  .options:hover{
+    background-color: #000000;
+  }

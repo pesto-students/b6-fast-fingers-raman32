@@ -1,0 +1,16 @@
+.wordDisplay{
+    font-size: xx-large;
+    display: inline;
+    color:grey;
+    text-transform: uppercase;
+    margin: 10px;
+}
+.wordDisplay div {
+    display: inline;
+}
+.correct {
+    color: green;
+}
+.incorrect{
+    color: red;
+}

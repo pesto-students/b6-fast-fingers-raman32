@@ -1,0 +1,26 @@
+.loading {
+  align-self: center;
+    display: flex;
+  }
+ 
+  .loading::after {
+    content: "";
+    width: 100%;
+    border: 5px solid #383838;
+    border-top-color: #f0f5f4;
+    border-radius: 50%;
+    transform: rotate(0.16turn);
+    animation: loading 1s ease infinite;
+  }
+  
+  @keyframes loading {
+    /* Safari support */
+    from {
+      transform: rotate(0turn);
+    }
+    
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  

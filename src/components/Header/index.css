@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.headerLeft {
+    text-align: left;
+    margin-left: 1rem;
+}
+.headerLeft div {
+    margin-top: 1rem;
+}
+.headerRight{
+    text-align:right;
+    margin-right: 1rem;
+    margin-left: 4rem;
+}
+.headerRight div {
+    color:red;
+    font-weight: 800;
+    margin-top: 1rem;
+}

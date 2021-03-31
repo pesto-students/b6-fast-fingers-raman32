@@ -1,0 +1,12 @@
+.EndScoreCard{
+    text-align: center;
+    justify-content: center;
+    font-size: xxx-large;
+    border: 1px white solid;
+    align-self: center;
+    margin-top: 10vh;
+    margin-bottom: 2rem;
+}
+.EndScoreCard div {
+    margin: 50px;
+}

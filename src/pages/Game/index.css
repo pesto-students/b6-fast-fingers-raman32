@@ -1,0 +1,18 @@
+.Game{ 
+    flex: 1;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+.body{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+}
+.footer{
+    width: max-content;
+}

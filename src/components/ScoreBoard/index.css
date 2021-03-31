@@ -1,0 +1,27 @@
+.ScoreBoard{
+   border: 2px white solid;
+   border-radius: .25rem;
+   flex:1;
+   padding: 5px; 
+   align-self: start;
+   height: 60vh;
+   min-width: 250px;
+   display: flex;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   flex-direction: column;
+  
+}
+.scoreBoardHeader{
+    font-size: x-large;
+    
+}
+.scoresContainer{
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.scoresContainer::-webkit-scrollbar {
+    display: none;
+  }
